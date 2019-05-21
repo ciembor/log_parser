@@ -1,0 +1,8 @@
+PreCommit:
+  Pronto:
+    enabled: true
+    on_warn: fail
+
+  TrailingWhitespace:
+    enabled: true
+    on_warn: fail
