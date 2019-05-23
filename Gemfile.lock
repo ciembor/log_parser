@@ -8,6 +8,7 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
     diff-lcs (1.3)
+    docile (1.3.1)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
@@ -20,6 +21,7 @@ GEM
     iniparse (1.4.4)
     irb (1.0.0)
     jaro_winkler (1.5.2)
+    json (2.2.0)
     method_source (0.9.2)
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
@@ -74,6 +76,11 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
+    simplecov (0.16.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     thor (0.20.3)
@@ -89,6 +96,7 @@ DEPENDENCIES
   pronto-rubocop
   pry
   rspec
+  simplecov
 
 BUNDLED WITH
    2.0.1
