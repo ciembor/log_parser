@@ -1,6 +1,6 @@
 class LogRecordsCollection
-  def initialize
-    self.collection = []
+  def initialize(collection = [])
+    self.collection = collection
   end
 
   def all
@@ -8,19 +8,21 @@ class LogRecordsCollection
   end
 
   def uniq
-    collection.uniq { |record| [record.address, record.client_ip] }
+    LogRecordsCollection.new(
+      collection.uniq { |record| [record.address, record.client_ip] }
+    )
   end
 
   def <<(record)
     collection << record
   end
 
-  def group_by_number_of_unique_visits
-    uniq.group_by(&:address)
+  def group_by_number_of_visits
+    all.group_by(&:address)
   end
 
-  def addresses_sorted_by_number_of_unique_visits
-    group_by_number_of_unique_visits
+  def addresses_sorted_by_number_of_visits
+    group_by_number_of_visits
       .map { |address, records| [address, records.count] }
       .sort_by { |_address, records_count| -records_count }
   end

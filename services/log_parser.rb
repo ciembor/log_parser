@@ -25,6 +25,7 @@ class LogParser
 
   def print
     presenter = LogRecordsPresenter.new(log_records)
+    puts presenter.ordered_addresses_with_number_of_all_visits
     puts presenter.ordered_addresses_with_number_of_unique_visits
   end
 

@@ -51,16 +51,21 @@ describe LogParser do
   describe '#print' do
     let(:presenter) { double('presenter') }
 
-    it 'prints addresses sorted by number of unique visits to standard output' do
+    it 'prints ordered lists of addresses for all visits and unique views to the standard output' do
       unique_visits_message = double('unique_visits_message')
+      all_visits_message = double('all_visits_message')
       allow(presenter)
         .to receive(:ordered_addresses_with_number_of_unique_visits)
         .and_return(unique_visits_message)
+      allow(presenter)
+        .to receive(:ordered_addresses_with_number_of_all_visits)
+        .and_return(all_visits_message)
       expect(LogRecordsPresenter)
         .to receive(:new)
         .with(subject.log_records)
         .and_return(presenter).once
       expect(STDOUT).to receive(:puts).with(unique_visits_message).once
+      expect(STDOUT).to receive(:puts).with(all_visits_message).once
       subject.print
     end
   end

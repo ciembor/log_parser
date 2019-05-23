@@ -34,28 +34,32 @@ describe LogRecordsCollection do
 
     describe '#uniq' do
       it 'returns only unique records' do
-        expect(subject.uniq).to eq [records[0], records[1], records[3]]
+        expect(subject.uniq.all).to eq [records[0], records[1], records[3]]
+      end
+
+      it 'is an instance of LogRecordsCollection' do
+        expect(subject).to be_a LogRecordsCollection
       end
     end
 
-    describe '#group_by_number_of_unique_visits' do
+    describe '#group_by_number_of_visits' do
       let(:expected_result) do
         {
           '/about' => [records[3]],
-          '/index' => [records[0], records[1]]
+          '/index' => [records[0], records[1], records[2]]
         }
       end
 
-      it 'returns addresses with unique client ids' do
-        expect(subject.group_by_number_of_unique_visits).to eq expected_result
+      it 'returns addresses with client ids' do
+        expect(subject.group_by_number_of_visits).to eq expected_result
       end
     end
 
-    describe '#addresses_sorted_by_number_of_unique_visits' do
-      let(:expected_result) { [['/index', 2], ['/about', 1]] }
+    describe '#addresses_sorted_by_number_of_visits' do
+      let(:expected_result) { [['/index', 3], ['/about', 1]] }
 
-      it 'returns addresses sorted by number of unique visits' do
-        expect(subject.addresses_sorted_by_number_of_unique_visits).to eq expected_result
+      it 'returns addresses sorted by number of visits' do
+        expect(subject.addresses_sorted_by_number_of_visits).to eq expected_result
       end
     end
   end
