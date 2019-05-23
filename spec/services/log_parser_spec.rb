@@ -49,32 +49,19 @@ describe LogParser do
   end
 
   describe '#print' do
-    let(:log_records) do
-      [
-        ['/index', '316.433.849.805'],
-        ['/about/2', '444.701.448.104'],
-        ['/contact', '543.910.244.929'],
-        ['/about/2', '126.318.035.038'],
-        ['/about/2', '836.973.694.403'],
-        ['/index', '802.683.925.780']
-      ]
-    end
-    let(:expected_stdout) do
-      <<~OUTPUT
-        /about/2 3 unique views
-        /index 2 unique views
-        /contact 1 unique view
-      OUTPUT
-    end
-
-    before do
-      log_records.each do |record|
-        subject.add_record(record)
-      end
-    end
+    let(:presenter) { double('presenter') }
 
     it 'prints addresses sorted by number of unique visits to standard output' do
-      expect { subject.print }.to output(expected_stdout).to_stdout
+      unique_visits_message = double('unique_visits_message')
+      allow(presenter)
+        .to receive(:ordered_addresses_with_number_of_unique_visits)
+        .and_return(unique_visits_message)
+      expect(LogRecordsPresenter)
+        .to receive(:new)
+        .with(subject.log_records)
+        .and_return(presenter).once
+      expect(STDOUT).to receive(:puts).with(unique_visits_message).once
+      subject.print
     end
   end
 end

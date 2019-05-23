@@ -1,5 +1,6 @@
 require_relative '../models/log_record'
 require_relative '../models/log_records_collection'
+require_relative '../presenters/log_records_presenter'
 
 class LogParser
   def initialize(log_filename)
@@ -23,11 +24,8 @@ class LogParser
   end
 
   def print
-    log_records.addresses_sorted_by_number_of_unique_visits.each do |address, number_of_visits|
-      message = "#{address} #{number_of_visits} unique view"
-      message += 's' if number_of_visits > 1
-      puts message
-    end
+    presenter = LogRecordsPresenter.new(log_records)
+    puts presenter.ordered_addresses_with_number_of_unique_visits
   end
 
   attr_reader :log_records
