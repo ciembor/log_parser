@@ -17,12 +17,12 @@ class LogRecordsCollection
     collection << record
   end
 
-  def group_by_number_of_visits
+  def group_by_address
     all.group_by(&:address)
   end
 
   def addresses_sorted_by_number_of_visits
-    group_by_number_of_visits
+    group_by_address
       .map { |address, records| [address, records.count] }
       .sort_by { |_address, records_count| -records_count }
   end

@@ -42,7 +42,7 @@ describe LogRecordsCollection do
       end
     end
 
-    describe '#group_by_number_of_visits' do
+    describe '#group_by_address' do
       let(:expected_result) do
         {
           '/about' => [records[3]],
@@ -51,7 +51,7 @@ describe LogRecordsCollection do
       end
 
       it 'returns addresses with client ids' do
-        expect(subject.group_by_number_of_visits).to eq expected_result
+        expect(subject.group_by_address).to eq expected_result
       end
     end
 
