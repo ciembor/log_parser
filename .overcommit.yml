@@ -7,3 +7,7 @@ PreCommit:
   TrailingWhitespace:
     enabled: true
     on_warn: fail
+
+CommitMsg:
+  TrailingPeriod:
+    enabled: false
