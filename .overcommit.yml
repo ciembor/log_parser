@@ -2,6 +2,7 @@ PreCommit:
   Pronto:
     enabled: true
     on_warn: fail
+    flags: ['run', '--staged', '--exit-code']
 
   TrailingWhitespace:
     enabled: true
