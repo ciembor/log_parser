@@ -8,7 +8,7 @@ class LogRecordsCollection
   end
 
   def uniq
-    LogRecordsCollection.new(
+    self.class.new(
       collection.uniq { |record| [record.address, record.client_ip] }
     )
   end
